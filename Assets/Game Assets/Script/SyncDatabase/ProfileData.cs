@@ -105,7 +105,7 @@ public class ProfileData : MonoBehaviour
 
     void Awake()
     {
-        regex = new Regex(sPattern, RegexOptions.Compiled);
+        regex = new Regex(sPattern);
         _using = GameObject.FindObjectOfType<UsingCon>();
 
         _sync = gameObject.GetComponent<Game>();

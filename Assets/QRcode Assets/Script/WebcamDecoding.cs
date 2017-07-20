@@ -7,7 +7,7 @@ using System.Threading;
 using ZXing.Common;
 using ZXing;
 using ZXing.QrCode;
-using com.google.zxing.qrcode;
+//using com.google.zxing.qrcode;
 
 /// <summary>
 /// Decoding qr code.
@@ -65,8 +65,9 @@ public class WebcamDecoding : MonoBehaviour
 		    for(_y = _H - 1; _y >= 0; _y--) 
 			    for(_x = 0; _x < _W; _x++) 
 				    _d[_z++] = (sbyte)(((int)_c[_y * _W + _x].r) << 16 | ((int)_c[_y * _W + _x].g) << 8 | ((int)_c[_y * _W + _x].b));
-			   
-            string s = new com.google.zxing.qrcode.QRCodeReader ( ).decode( _d, _W, _H ).Text;
+            
+            //string s = new com.google.zxing.qrcode.QRCodeReader().decode(_d, _W, _H).Text;
+            string s = "";
             _camTexture.Stop ( );
             _playerPrefLogin.QRDecoding ( s );
 	    }

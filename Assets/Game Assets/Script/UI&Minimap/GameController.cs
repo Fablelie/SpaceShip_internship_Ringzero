@@ -155,7 +155,7 @@ public class GameController : MonoBehaviour, IGameFacade
 
     void Awake ( )
     {
-#if ( UNITY_STANDALONE ) 
+#if (UNITY_STANDALONE)
         Screen.SetResolution ( WIDTH, HEIGHT, false );
 #endif
     }
@@ -164,7 +164,8 @@ public class GameController : MonoBehaviour, IGameFacade
     /// Show current passcode.
     /// </summary>
     public void ViewPasscode ( )
-    {  
+    {
+        print("afsdklfjas;");
         if ( textPasscode != null )
         {   
             if ( _using.profile.passCode != "" )
@@ -224,7 +225,7 @@ public class GameController : MonoBehaviour, IGameFacade
         colorProp.G.onValueChanged.AddListener(delegate { OnValueChanged(); });
         colorProp.B.onValueChanged.AddListener(delegate { OnValueChanged(); });
 
-        canvasGroup = panel.GetComponent<CanvasGroup>();
+        //canvasGroup = panel.GetComponent<CanvasGroup>();
 
         // set ship material to _mat.
         _mat = colorProp.ship.material;
@@ -279,18 +280,20 @@ public class GameController : MonoBehaviour, IGameFacade
         scoreText.text = "" + scorePoint;
 
          // when you use scale it will do this. ( change scale)
-        if (useScale)
-        {
-            panel.localScale = new Vector3(1, scaleY, 0);
+        //if (useScale)
+        //{
+        //    //panel.localScale = new Vector3(1, scaleY, 0);
 
-            if ( !_gamePause && !_isOpenOption )
-                scaleY -= Time.deltaTime * speed;
+        //    if (!_gamePause && !_isOpenOption)
+        //        panel.transform.gameObject.GetComponent<Animator>().SetTrigger("Close");
+        //        //scaleY -= Time.deltaTime * speed;
 
-            if ( _gamePause && _isOpenOption )
-                scaleY += Time.deltaTime * speed;
+        //    if ( _gamePause && _isOpenOption )
+        //        panel.transform.gameObject.GetComponent<Animator>().SetTrigger("Open");
+        //    //scaleY += Time.deltaTime * speed;
 
-            scaleY = Mathf.Clamp(scaleY, 0, 1);
-        }
+        //    //scaleY = Mathf.Clamp(scaleY, 0, 1);
+        //}
 
     }
 
@@ -306,6 +309,11 @@ public class GameController : MonoBehaviour, IGameFacade
 
         _isOpenOption = !_isOpenOption;
 
+        if (!_gamePause && !_isOpenOption)
+            panel.transform.gameObject.GetComponent<Animator>().SetTrigger("Close");
+        else
+            panel.transform.gameObject.GetComponent<Animator>().SetTrigger("Open");
+        
         OnClickButton("_ColorG");
         OnClickButton("_ColorB");
         OnClickButton("_ColorR");
@@ -318,6 +326,7 @@ public class GameController : MonoBehaviour, IGameFacade
     {
         _gamePause = !_gamePause;
         _isOpenOption = !_isOpenOption;
+        panel.transform.gameObject.GetComponent<Animator>().SetTrigger("Close");
     }
 
     

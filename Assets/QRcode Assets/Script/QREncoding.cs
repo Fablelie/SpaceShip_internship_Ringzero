@@ -7,7 +7,7 @@ using System.Threading;
 using ZXing.Common;
 using ZXing;
 using ZXing.QrCode;
-using com.google.zxing.qrcode;
+//using com.google.zxing.qrcode;
 
 /// <summary>
 /// Encode qr by player data.

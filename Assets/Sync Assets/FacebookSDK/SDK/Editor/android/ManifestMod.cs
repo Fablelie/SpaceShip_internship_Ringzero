@@ -26,7 +26,7 @@ namespace UnityEditor.FacebookEditor
     using System.Linq;
     using System.Text;
     using System.Xml;
-    using Facebook.Unity;
+    //using Facebook.Unity;
     using UnityEditor;
     using UnityEngine;
 
@@ -111,13 +111,13 @@ namespace UnityEditor.FacebookEditor
 
         public static void UpdateManifest(string fullPath)
         {
-            string appId = FacebookSettings.AppId;
+            //string appId = FacebookSettings.AppId;
 
-            if (!FacebookSettings.IsValidAppId)
-            {
-                Debug.LogError("You didn't specify a Facebook app ID.  Please add one using the Facebook menu in the main Unity editor.");
-                return;
-            }
+            //if (!FacebookSettings.IsValidAppId)
+            //{
+            //    Debug.LogError("You didn't specify a Facebook app ID.  Please add one using the Facebook menu in the main Unity editor.");
+            //    return;
+            //}
 
             XmlDocument doc = new XmlDocument();
             doc.Load(fullPath);
@@ -151,7 +151,7 @@ namespace UnityEditor.FacebookEditor
             XmlElement loginElement = CreateLoginElement(doc, ns);
             ManifestMod.SetOrReplaceXmlElement(dict, loginElement);
 
-            ManifestMod.AddAppLinkingActivity(doc, dict, ns, FacebookSettings.AppLinkSchemes[FacebookSettings.SelectedAppIndex].Schemes);
+            //ManifestMod.AddAppLinkingActivity(doc, dict, ns, FacebookSettings.AppLinkSchemes[FacebookSettings.SelectedAppIndex].Schemes);
 
             ManifestMod.AddSimpleActivity(doc, dict, ns, DeepLinkingActivityName, true);
             ManifestMod.AddSimpleActivity(doc, dict, ns, UnityGameRequestActivityName);
@@ -163,7 +163,7 @@ namespace UnityEditor.FacebookEditor
             // <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ fb<APPID>" />
             XmlElement appIdElement = doc.CreateElement("meta-data");
             appIdElement.SetAttribute("name", ns, ApplicationIdMetaDataName);
-            appIdElement.SetAttribute("value", ns, "fb" + appId);
+            //appIdElement.SetAttribute("value", ns, "fb" + appId);
             ManifestMod.SetOrReplaceXmlElement(dict, appIdElement);
 
             // Add the facebook content provider
@@ -171,8 +171,8 @@ namespace UnityEditor.FacebookEditor
             //   android:name="com.facebook.FacebookContentProvider"
             //   android:authorities="com.facebook.app.FacebookContentProvider<APPID>"
             //   android:exported="true" />
-            XmlElement contentProviderElement = CreateContentProviderElement(doc, ns, appId);
-            ManifestMod.SetOrReplaceXmlElement(dict, contentProviderElement);
+            //XmlElement contentProviderElement = CreateContentProviderElement(doc, ns, appId);
+            //ManifestMod.SetOrReplaceXmlElement(dict, contentProviderElement);
 
             // Add the facebook activity
             // <activity

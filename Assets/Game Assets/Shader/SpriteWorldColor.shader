@@ -1,3 +1,6 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 
 Shader "Shader Forge/SpriteWorldColor" {
     Properties {
@@ -53,8 +56,8 @@ Shader "Shader Forge/SpriteWorldColor" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 o.vertexColor = v.vertexColor;
-                o.posWorld = mul(_Object2World, v.vertex);
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex );
                 #ifdef PIXELSNAP_ON
                     o.pos = UnityPixelSnap(o.pos);
                 #endif
